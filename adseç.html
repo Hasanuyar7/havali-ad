@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havalı Site Adı Üretici</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0b0f1c 0%, #1a1f33 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* soyut arkaplan efekti */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 30% 40%, rgba(100, 108, 255, 0.12) 0%, transparent 35%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 120, 220, 0.1) 0%, transparent 40%);
+            top: -25%;
+            left: -25%;
+            z-index: 0;
+            animation: slowShift 22s infinite alternate ease-in-out;
+        }
+
+        @keyframes slowShift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-3%, -2%) scale(1.02); }
+        }
+
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            width: 100%;
+            background: rgba(18, 22, 40, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(130, 140, 255, 0.2);
+            border-radius: 3rem;
+            padding: 2.8rem 2.5rem;
+            box-shadow: 0 35px 75px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(200, 210, 255, 0.1) inset;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+            border-color: rgba(170, 180, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #d6dcff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h1 i {
+            background: rgba(255,255,255,0.08);
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: #b1bbff;
+            -webkit-text-fill-color: #b1bbff;
+            box-shadow: 0 5px 15px rgba(0, 10, 50, 0.5);
+        }
+
+        .subhead {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #9ca3c6;
+            margin-bottom: 2.5rem;
+            border-left: 3px solid #4c5bcd;
+            padding-left: 1.1rem;
+            letter-spacing: 0.2px;
+        }
+
+        .display-box {
+            background: rgba(8, 12, 27, 0.7);
+            border-radius: 2.5rem;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.3rem;
+            border: 1px solid rgba(140, 160, 255, 0.25);
+            box-shadow: 0 15px 30px -10px #040618, inset 0 1px 2px rgba(255,255,255,0.05);
+            transition: all 0.2s;
+            word-break: break-word;
+        }
+
+        .site-name {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: white;
+            text-shadow: 0 2px 10px rgba(90, 140, 255, 0.5);
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .site-name span {
+            background: linear-gradient(145deg, #f0f3ff, #c7d0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .extension-badge {
+            font-size: 1.6rem;
+            font-weight: 600;
+            background: rgba(70, 90, 200, 0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            border: 1px solid #4d60c0;
+            color: #b7c3ff;
+            -webkit-text-fill-color: #b7c3ff;
+            box-shadow: 0 0 15px #3355aa40;
+            white-space: nowrap;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background: rgba(25, 30, 55, 0.8);
+            border: 1px solid #37407c;
+            color: #d3dcff;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 60px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 18px -8px #010314;
+            flex: 1 1 auto;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(145deg, #2b3470, #1a2355);
+            border-color: #6d7df0;
+            color: white;
+            text-shadow: 0 1px 2px black;
+            box-shadow: 0 8px 20px #202b70, 0 0 0 1px #8295ff inset;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(145deg, #36408f, #212b68);
+            border-color: #99a9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 28px #1f2770;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(40, 48, 85, 0.9);
+            border-color: #5f70d9;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .btn i {
+            font-size: 1.3rem;
+        }
+
+        .copy-notification {
+            background: #1f283e;
+            border: 1px solid #546ac0;
+            color: #cddcff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 2rem;
+            box-shadow: 0 5px 12px #0000004d;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .copy-notification.show {
+            opacity: 1;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            color: #6d749b;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px dashed #2e3660;
+            padding-top: 1.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-note i {
+            color: #8495ef;
+        }
+
+        @media (max-width: 550px) {
+            .card { padding: 2rem 1.5rem; border-radius: 2rem; }
+            h1 { font-size: 2rem; }
+            .site-name { font-size: 2.2rem; flex-direction: column; align-items: flex-start; }
+            .extension-badge { font-size: 1.3rem; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>
+            <i class="fas fa-bolt"></i> 
+            havalı site adı üretici
+        </h1>
+        <div class="subhead">
+            <i class="fas fa-meteor" style="margin-right: 8px;"></i> İlham veren, akılda kalıcı, modern alan adları
+        </div>
+
+        <!-- Üretilen adın gösterildiği alan -->
+        <div class="display-box">
+            <div class="site-name" id="siteNameDisplay">
+                <span id="namePart">NovaSpark</span>
+                <span class="extension-badge" id="extensionPart">.io</span>
+            </div>
+        </div>
+
+        <!-- Butonlar -->
+        <div class="button-group">
+            <button class="btn btn-primary" id="generateBtn">
+                <i class="fas fa-dice-d20"></i> Yeni ad üret
+            </button>
+            <button class="btn btn-secondary" id="copyBtn">
+                <i class="far fa-copy"></i> Kopyala
+            </button>
+        </div>
+
+        <!-- Kopyalandı bildirimi -->
+        <div id="copyNotification" class="copy-notification">
+            <i class="fas fa-check-circle" style="color: #73f09a;"></i> Ad panoya kopyalandı!
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-sparkles"></i> Her tıklamada yeni bir kombinasyon — sitene ilham olsun
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- HAVALI KELİME HAVUZLARI ----------
+            const prefixes = [
+                "Pixel", "Nova", "Cyber", "Quantum", "Fusion", "Echo", "Solar", "Lunar", "Neon", 
+                "Digital", "Smart", "Hyper", "Meta", "Nano", "Spark", "Blaze", "Crystal", "Phantom", 
+                "Shadow", "Storm", "Thunder", "Apex", "Zenith", "Prime", "Core", "Flux", "Shift", 
+                "Pulse", "Wave", "Flow", "Forge", "Craft", "Mind", "Brain", "Logic", "Code", "Bit", 
+                "Byte", "App", "Web", "Net", "Soft", "Ware", "Tech", "Hub", "Lab", "Studio", 
+                "Works", "Solutions", "Systems", "Cloud", "Edge", "Node", "Link", "Bridge", "Port", 
+                "Hive", "Nexus", "Orbit", "Rocket", "Galaxy", "Nebula", "Void", "Cipher", "Crypt", 
+                "Vortex", "Phoenix", "Dragon", "Falcon", "Raven", "Wolf", "Fox", "Owl", "Panther", 
+                "Serpent", "Titan", "Atlas", "Odyssey", "Voyager", "Pioneer", "Ghost", "Specter", 
+                "Ethereal", "Astral", "Cosmic", "Infinite", "Eternal", "Beyond", "Zen", "Nirvana"
+            ];
+
+            const suffixes = [
+                "Tech", "Soft", "Ware", "Net", "Web", "Site", "Hub", "Lab", "Labs", "Studio", 
+                "Forge", "Craft", "Works", "Solutions", "Systems", "Logic", "Mind", "Brain", 
+                "Code", "Bit", "Byte", "App", "Verse", "Space", "World", "Flow", "Wave", "Pulse", 
+                "Shift", "Cloud", "Edge", "Grid", "Node", "Link", "Bridge", "Port", "Hive", 
+                "Nest", "Nexus", "Core", "Spark", "Blaze", "Crystal", "Phantom", "Shadow", "Storm", 
+                "Thunder", "Apex", "Zenith", "Prime", "Fusion", "Nova", "Quantum", "Cyber", "Echo", 
+                "Solar", "Lunar", "Neon", "Digital", "Smart", "Hyper", "Meta", "Nano", "Pixel", 
+                "Orbit", "Rocket", "Galaxy", "Nebula", "Void", "Cipher", "Crypt", "Vortex", 
+                "Phoenix", "Dragon", "Falcon", "Raven", "Wolf", "Fox", "Owl", "Panther", "Serpent", 
+                "Titan", "Atlas", "Odyssey", "Voyager", "Pioneer", "Ghost", "Specter", "Ethereal", 
+                "Astral", "Cosmic", "Infinite", "Eternal", "Beyond", "Zenith", "Nirvana", "Logic"
+            ];
+
+            // Alan adı uzantıları (havalı olanlar)
+            const extensions = [
+                ".com", ".io", ".app", ".dev", ".tech", ".net", ".org", ".co", 
+                ".ai", ".io", ".so", ".me", ".gg", ".xyz", ".online", ".site",
+                ".studio", ".hub", ".cloud", ".digital", ".lol", ".game", ".guru"
+            ];
+
+            // Rastgele eleman seç
+            const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+            // İlk harfi büyük yap (zaten büyük ama yine de)
+            const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+            // Ana üretici fonksiyon: farklı kombinasyon stilleri
+            function generateCoolName() {
+                // 5 farklı yöntemden birini rastgele seç (0-4)
+                const method = Math.floor(Math.random() * 5);
+
+                let mainPart = "";
+
+                switch (method) {
+                    case 0: // prefix + suffix (direkt birleşik)
+                        mainPart = randomItem(prefixes) + randomItem(suffixes);
+                        break;
+                    case 1: // suffix + prefix (nadir dilli bir efekt)
+                        mainPart = randomItem(suffixes) + randomItem(prefixes);
+                        break;
+                    case 2: // prefix + aracı harf + suffix (daha akıcı)
+                        const connector = ["", "", "i", "o", "e", "a"][Math.floor(Math.random() * 6)]; // boş da olabilir
+                        mainPart = randomItem(prefixes) + connector + randomItem(suffixes);
+                        break;
+                    case 3: // sadece tek bir kelime (prefix ya da suffix) - kısa ve çarpıcı
+                        if (Math.random() > 0.5) {
+                            mainPart = randomItem(prefixes);
+                        } else {
+                            mainPart = randomItem(suffixes);
+                        }
+                        break;
+                    case 4: // The + prefix + suffix  (resmi hava)
+                        mainPart = "The" + randomItem(prefixes) + randomItem(suffixes);
+                        break;
+                    default: // fallback
+                        mainPart = randomItem(prefixes) + randomItem(suffixes);
+                }
+
+                // Bazen sayı ekle (çok havalı site adlarında 24/7, 360 vb.)
+                if (Math.random() < 0.2) { // %20 ihtimal
+                    const numbers = ["7", "24", "360", "42", "99", "77", "4", "1", "0", "21", "88", "100"];
+                    mainPart += randomItem(numbers);
+                }
+
+                // Uzantıyı seç
+                const ext = randomItem(extensions);
+
+                return { name: mainPart, extension: ext };
+            }
+
+            // DOM elementleri
+            const nameSpan = document.getElementById('namePart');
+            const extSpan = document.getElementById('extensionPart');
+            const generateBtn = document.getElementById('generateBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const notification = document.getElementById('copyNotification');
+
+            // Ekrana yazdır
+            function displayNewName() {
+                const { name, extension } = generateCoolName();
+                nameSpan.textContent = name;
+                extSpan.textContent = extension;
+            }
+
+            // İlk yüklemede hemen bir ad göster
+            displayNewName();
+
+            // Generate butonu
+            generateBtn.addEventListener('click', () => {
+                displayNewName();
+                // Kopya bildirimini gizle (eğer açıksa)
+                notification.classList.remove('show');
+            });
+
+            // Kopyalama işlevi
+            copyBtn.addEventListener('click', async () => {
+                // Mevcut adı al: "namePart + extensionPart"
+                const fullName = nameSpan.textContent + extSpan.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(fullName);
+                    // bildirim göster
+                    notification.classList.add('show');
+
+                    // 2.5 saniye sonra bildirimi gizle
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 2500);
+                } catch (err) {
+                    console.warn('Kopyalama hatası: ', err);
+                    // Fallback (eski yöntem)
+                    const textArea = document.createElement('textarea');
+                    textArea.value = fullName;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+
+                    notification.classList.add('show');
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 2500);
+                }
+            });
+
+            // Hızlı tıklamalar için butonlara minik efekt (opsiyonel)
+            generateBtn.addEventListener('mousedown', (e) => e.currentTarget.style.transform = 'scale(0.97)');
+            generateBtn.addEventListener('mouseup', (e) => e.currentTarget.style.transform = '');
+            generateBtn.addEventListener('mouseleave', (e) => e.currentTarget.style.transform = '');
+
+            copyBtn.addEventListener('mousedown', (e) => e.currentTarget.style.transform = 'scale(0.97)');
+            copyBtn.addEventListener('mouseup', (e) => e.currentTarget.style.transform = '');
+            copyBtn.addEventListener('mouseleave', (e) => e.currentTarget.style.transform = '');
+        })();
+    </script>
+</body>
+</html>
